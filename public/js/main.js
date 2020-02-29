@@ -14,5 +14,6 @@ $("#exampleFormControlSelect2").keypress(function(event){
     item.text($('#exampleFormControlSelect2').val());
     item.appendTo(theList);
     $("<hr>").appendTo(theList);
+    $('#exampleFormControlSelect2').val("");
   }
 });

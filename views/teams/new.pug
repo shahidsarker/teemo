@@ -26,8 +26,11 @@ block content
     .form-group
       label(for='privacyOption') Privacy textarea
       .form-check
-        input#inlineRadio1.form-check-input(type='radio' name='inlineRadioOptions' value='option1')
+        input#inlineRadio1.form-check-input(type='radio' name='inlineRadioOptions' value='option1' checked)
         label.form-check-label(for='inlineRadio1') Public
       .form-check
         input#inlineRadio2.form-check-input(type='radio' name='inlineRadioOptions' value='option2')
         label.form-check-label(for='inlineRadio2') Private
+      .form-group
+        a(href="/teams/1")
+          button.btn.btn-primary.ml-auto.mr-auto(type="button") Create!
