@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  h1 Create a team
+  form
+    .form-group
+      label(for='exampleFormControlInput1') Team name
+      input#exampleFormControlInput1.form-control(type='team_name' placeholder='Tune Squad')
+    .form-group
+      label(for='exampleFormControlSelect1') Team Category
+      select#exampleFormControlSelect1.form-control
+        option 1
+        option 2
+        option 3
+        option 4
+        option 5
+    .form-group
+      label(for='exampleFormControlSelect2') Team Members
+      select#exampleFormControlSelect2.form-control(multiple='')
+        option John Smith
+        option Jane Doe
+        option Michael Jones
+        option Jessica Murphy
+        option Eric Anderson
+    .form-group
+      label(for='exampleFormControlTextarea1') Example textarea
+      textarea#exampleFormControlTextarea1.form-control(rows='3')
+    .form-group
+      label(for='privacyOption') Privacy textarea
+      .form-check
+        input#inlineRadio1.form-check-input(type='radio' name='inlineRadioOptions' value='option1')
+        label.form-check-label(for='inlineRadio1') Public
+      .form-check
+        input#inlineRadio2.form-check-input(type='radio' name='inlineRadioOptions' value='option2')
+        label.form-check-label(for='inlineRadio2') Private
