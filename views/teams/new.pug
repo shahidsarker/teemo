@@ -16,15 +16,13 @@ block content
         option 5
     .form-group
       label(for='exampleFormControlSelect2') Team Members
-      select#exampleFormControlSelect2.form-control(multiple='')
-        option John Smith
-        option Jane Doe
-        option Michael Jones
-        option Jessica Murphy
-        option Eric Anderson
-    .form-group
-      label(for='exampleFormControlTextarea1') Example textarea
-      textarea#exampleFormControlTextarea1.form-control(rows='3')
+      input#exampleFormControlSelect2(type='text' placeholder='Team Mate')
+      ul#theList
+        .row
+          each member in members
+            li.list-unstyled.col-lg-6.mb-4.col-md-12.mb-md-4
+              include partials/member
+              hr
     .form-group
       label(for='privacyOption') Privacy textarea
       .form-check

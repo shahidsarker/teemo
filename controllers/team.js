@@ -16,6 +16,10 @@ exports.index = (req, res) => {
 
 exports.new = (req, res) => {
   res.render("teams/new", {
-    title: "New Team"
+    title: "New Team",
+    members: members
   });
 };
+
+var members = [];
+
