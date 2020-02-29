@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h1 Teams
+  ul
+    .row
+      each team in teams
+        li.list-unstyled.col-lg-6.mb-4.col-md-12.mb-md-4
+          include partials/team
