@@ -1,11 +1,15 @@
-/**
- * GET /teams
- * List all teams.
- */
-const Team = require('../models/Team.js');
+const Team = {
+  teams: [
+    { _id: 1, link: "#", name: "Hello", description: "Lorem ipsum" },
+    { _id: 2, link: "#", name: "Hi There", description: "Lorem ip difference" },
+    { _id: 3, link: "#", name: "Yup", description: "Lorem ip product" },
+    { _id: 4, link: "#", name: "Yo", description: "Lorem ip quotient" }
+  ]
+};
 
-exports.getTeams = (req, res) => {
-  Team.find((err, users) => {
-    res.render('teams', { team: users });
+exports.index = (req, res) => {
+  res.render("teams/index", {
+    title: "Teams",
+    teams: Team.teams
   });
 };
