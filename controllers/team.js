@@ -10,6 +10,6 @@ const Team = {
 exports.index = (req, res) => {
   res.render("teams/index", {
     title: "Teams",
-    Teams: Team.teams
+    teams: Team.teams
   });
 };
