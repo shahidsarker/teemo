@@ -1,12 +1,10 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 
-// const SkillSchema = new mongoose.Schema({
-//   skillName: String,
-//   categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
+const skillSchema = new mongoose.Schema({
+  skillName: String,
+  category: String,
+});
 
-
-// });
-
-// const Skill = mongoose.model('Skill', SkillSchema);
-// module.exports = Skill;
+const Skill = mongoose.model('Skill', skillSchema);
+module.exports = Skill;

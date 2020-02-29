@@ -29,18 +29,11 @@ dotenv.config({ path: ".env" });
 /**
  * Controllers (route handlers).
  */
-<<<<<<< HEAD
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 const teamController = require('./controllers/team');
-=======
-const homeController = require("./controllers/home");
-const userController = require("./controllers/user");
-const apiController = require("./controllers/api");
-const contactController = require("./controllers/contact");
->>>>>>> 94a6c24a6e4d91de8e519676ef99c17b7ea96cb5
 
 /**
  * API keys and Passport configuration.
