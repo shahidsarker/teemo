@@ -1,8 +1,12 @@
 extends layout
 
 block content
-  h1 Teemo
-  p.lead A boilerplate for Node.js web applications.
+  if !user
+    h1 Teemo
+    p.lead A boilerplate for Node.js web applications.
+  else
+    h1 Dashboard
+    p.lead Teams and Projects
   hr
   .row
     if !user
@@ -27,18 +31,30 @@ block content
         p
           a.btn.btn-raised(href='#', role='button') View details »
     else
-      .col-md-6
-
-        
-
-        form
-          .input-group
-            input.form-control( type="search" placeholder="Find a team" aria-label="Find a team")
-            button.btn.btn-outline-success(type="submit" value='Search') Search
-        .team-list.w-100
-          
+      form.col-8.mb-4
+        .input-group
+          input.form-control( type="search" placeholder="Find a team" aria-label="Find a team")
+          button.btn.btn-outline-success(type="submit" value='Search') Search
+      .col-md-8
+        .team-list
           h4.m-1 Your teams 
-            button.btn.btn-primary.ml-auto.mr-auto(type="button") Create a team
+            a(href="/teams/new")
+              button.btn.btn-primary.ml-auto.mr-auto(type="button") Create a team
+          ul.list-group
+            a(href="#")
+              li.list-group-item Cras justo odio
+            a(href="#")
+              li.list-group-item Dapibus ac facilisis in
+            a(href="#")
+              li.list-group-item Morbi leo risus
+            a(href="#")
+              li.list-group-item Porta ac consectetur ac
+            a(href="#")
+              li.list-group-item Vestibulum at eros
+      .col-md-4
+        .project-list
+          h4.m-1 Your Projects 
+            button.btn.btn-primary.ml-auto.mr-auto(type="button") Create a project
           ul.list-group
             a(href="#")
               li.list-group-item Cras justo odio

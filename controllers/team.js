@@ -13,3 +13,9 @@ exports.index = (req, res) => {
     teams: Team.teams
   });
 };
+
+exports.new = (req, res) => {
+  res.render("teams/new", {
+    title: "New Team"
+  });
+};
