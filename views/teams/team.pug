@@ -1,0 +1,55 @@
+extends ../layout
+
+block content
+  h1= team.name
+  .row
+    table.table.col-8.skills-table
+      thead
+        tr
+          th(scope='col') Skills
+          th(scope='col')= team.members[0].name
+          th(scope='col')=team.members[1].name
+          th(scope='col')=team.members[2].name
+      tbody
+        tr
+          th(scope='row') Front-End
+          td= team.members[0].skills[0]
+          td= team.members[1].skills[0]
+          td= team.members[2].skills[0]
+        tr
+          th(scope='row') Back-End
+          td= team.members[0].skills[1]
+          td= team.members[1].skills[1]
+          td= team.members[2].skills[1]
+        tr
+          th(scope='row') Databases
+          td= team.members[0].skills[2]
+          td= team.members[1].skills[2]
+          td= team.members[2].skills[2]
+        tr
+          th(scope='row') Design
+          td= team.members[0].skills[3]
+          td= team.members[1].skills[3]
+          td= team.members[2].skills[3]
+        tr
+          th(scope='row') Project Management
+          td= team.members[0].skills[4]
+          td= team.members[1].skills[4]
+          td= team.members[2].skills[4]
+        tr
+          th(scope='row') Experience
+          td= team.members[0].skills[5]
+          td= team.members[1].skills[5]
+          td= team.members[2].skills[5]
+    .skills-progress.col-4
+      center
+        h4.pb-2 Progress
+      .progress.mx-auto(data-value=team.progress)
+        span.progress-left
+          span.progress-bar.border-primary
+        span.progress-right
+          span.progress-bar.border-primary
+        .progress-value.w-100.h-100.rounded-circle.d-flex.align-items-center.justify-content-center
+          .h2.font-weight-bold
+            | #{team.progress}
+            sup.small %

@@ -41,16 +41,11 @@ block content
             a(href="/teams/new")
               button.btn.btn-primary.ml-auto.mr-auto(type="button") Create a team
           ul.list-group
-            a(href="#")
-              li.list-group-item Cras justo odio
-            a(href="#")
-              li.list-group-item Dapibus ac facilisis in
-            a(href="#")
-              li.list-group-item Morbi leo risus
-            a(href="#")
-              li.list-group-item Porta ac consectetur ac
-            a(href="#")
-              li.list-group-item Vestibulum at eros
+            script.
+              console.log(teams.name)
+            for team in teams
+              a(href='/teams/'+team._id)
+                li.list-group-item= team.name
       .col-md-4
         .project-list
           h4.m-1 Your Projects 
