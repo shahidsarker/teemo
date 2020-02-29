@@ -34,6 +34,8 @@ const userController = require("./controllers/user");
 const apiController = require("./controllers/api");
 const contactController = require("./controllers/contact");
 
+const teamController = require("./controllers/team");
+
 /**
  * API keys and Passport configuration.
  */
@@ -209,6 +211,11 @@ app.get(
   passportConfig.isAuthenticated,
   userController.getOauthUnlink
 );
+
+/**
+ * team routes
+ */
+app.get("/teams", teamController.index);
 
 /**
  * API examples routes.
