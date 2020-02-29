@@ -2,4 +2,6 @@ div.card
   div.card-body
     h5.card-title= team.name
     p.card-text= team.description
-    a.btn.btn-primary(href=team.link) Go somewhere
+    p.card-text Members: 
+      =  team.members.map(member=>member.name).join(' ')
+    a.btn.btn-primary(href='/teams/'+team._id) Team Stats

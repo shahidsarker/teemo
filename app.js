@@ -217,6 +217,7 @@ app.get(
  */
 app.get("/teams", teamController.index);
 app.get("/teams/new", teamController.new);
+app.get("/teams/:id", teamController.team);
 
 /**
  * API examples routes.
