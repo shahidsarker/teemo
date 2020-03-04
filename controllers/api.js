@@ -9,7 +9,6 @@ const stripe = require("stripe")(process.env.STRIPE_SKEY);
 const clockwork = require("clockwork")({ key: process.env.CLOCKWORK_KEY });
 const paypal = require("paypal-rest-sdk");
 const lob = require("lob")(process.env.LOB_KEY);
-const ig = require("instagram-node").instagram();
 const axios = require("axios");
 const { google } = require("googleapis");
 const validator = require("validator");
@@ -292,29 +291,6 @@ exports.getChart = async (req, res, next) => {
     .catch(err => {
       next(err);
     });
-};
-
-/**
- * GET /api/instagram
- * Instagram API example.
- */
-exports.getInstagram = async (req, res, next) => {
-  const token = req.user.tokens.find(token => token.kind === "instagram");
-  ig.use({
-    client_id: process.env.INSTAGRAM_ID,
-    client_secret: process.env.INSTAGRAM_SECRET
-  });
-  ig.use({ access_token: token.accessToken });
-  try {
-    const userSelfMediaRecentAsync = promisify(ig.user_self_media_recent);
-    const myRecentMedia = await userSelfMediaRecentAsync();
-    res.render("api/instagram", {
-      title: "Instagram API",
-      myRecentMedia
-    });
-  } catch (error) {
-    next(error);
-  }
 };
 
 /**
