@@ -240,7 +240,6 @@ app.post(
   lusca({ csrf: true }),
   apiController.postFileUpload
 );
-app.get("/api/here-maps", apiController.getHereMaps);
 app.get(
   "/api/google/drive",
   passportConfig.isAuthenticated,
