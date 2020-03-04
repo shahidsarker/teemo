@@ -291,12 +291,6 @@ app.get(
   passportConfig.isAuthorized,
   apiController.getGoogleSheets
 );
-app.get(
-  "/api/quickbooks",
-  passportConfig.isAuthenticated,
-  passportConfig.isAuthorized,
-  apiController.getQuickbooks
-);
 
 /**
  * OAuth authentication routes. (Sign in)
@@ -391,20 +385,6 @@ app.get(
   passport.authorize("pinterest", { failureRedirect: "/login" }),
   (req, res) => {
     res.redirect("/api/pinterest");
-  }
-);
-app.get(
-  "/auth/quickbooks",
-  passport.authorize("quickbooks", {
-    scope: ["com.intuit.quickbooks.accounting"],
-    state: "SOME STATE"
-  })
-);
-app.get(
-  "/auth/quickbooks/callback",
-  passport.authorize("quickbooks", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect(req.session.returnTo);
   }
 );
 

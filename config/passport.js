@@ -626,69 +626,6 @@ passport.use(
 );
 
 /**
- * Intuit/QuickBooks API OAuth.
- */
-const quickbooksStrategyConfig = new OAuth2Strategy(
-  {
-    authorizationURL: "https://appcenter.intuit.com/connect/oauth2",
-    tokenURL: "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
-    clientID: process.env.QUICKBOOKS_CLIENT_ID,
-    clientSecret: process.env.QUICKBOOKS_CLIENT_SECRET,
-    callbackURL: `${process.env.BASE_URL}/auth/quickbooks/callback`,
-    passReqToCallback: true
-  },
-  (res, accessToken, refreshToken, params, profile, done) => {
-    User.findById(res.user._id, (err, user) => {
-      if (err) {
-        return done(err);
-      }
-      user.quickbooks = res.query.realmId;
-      if (user.tokens.filter(vendor => vendor.kind === "quickbooks")[0]) {
-        user.tokens.some(tokenObject => {
-          if (tokenObject.kind === "quickbooks") {
-            tokenObject.accessToken = accessToken;
-            tokenObject.accessTokenExpires = moment()
-              .add(params.expires_in, "seconds")
-              .format();
-            tokenObject.refreshToken = refreshToken;
-            tokenObject.refreshTokenExpires = moment()
-              .add(params.x_refresh_token_expires_in, "seconds")
-              .format();
-            if (params.expires_in)
-              tokenObject.accessTokenExpires = moment()
-                .add(params.expires_in, "seconds")
-                .format();
-            return true;
-          }
-          return false;
-        });
-        user.markModified("tokens");
-        user.save(err => {
-          done(err, user);
-        });
-      } else {
-        user.tokens.push({
-          kind: "quickbooks",
-          accessToken,
-          accessTokenExpires: moment()
-            .add(params.expires_in, "seconds")
-            .format(),
-          refreshToken,
-          refreshTokenExpires: moment()
-            .add(params.x_refresh_token_expires_in, "seconds")
-            .format()
-        });
-        user.save(err => {
-          done(err, user);
-        });
-      }
-    });
-  }
-);
-passport.use("quickbooks", quickbooksStrategyConfig);
-refresh.use("quickbooks", quickbooksStrategyConfig);
-
-/**
  * Login Required middleware.
  */
 exports.isAuthenticated = (req, res, next) => {
