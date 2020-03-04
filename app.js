@@ -264,18 +264,6 @@ app.post(
   lusca({ csrf: true }),
   apiController.postFileUpload
 );
-app.get(
-  "/api/pinterest",
-  passportConfig.isAuthenticated,
-  passportConfig.isAuthorized,
-  apiController.getPinterest
-);
-app.post(
-  "/api/pinterest",
-  passportConfig.isAuthenticated,
-  passportConfig.isAuthorized,
-  apiController.postPinterest
-);
 app.get("/api/here-maps", apiController.getHereMaps);
 app.get("/api/google-maps", apiController.getGoogleMaps);
 app.get(
@@ -374,17 +362,6 @@ app.get(
   passport.authorize("tumblr", { failureRedirect: "/api" }),
   (req, res) => {
     res.redirect("/api/tumblr");
-  }
-);
-app.get(
-  "/auth/pinterest",
-  passport.authorize("pinterest", { scope: "read_public write_public" })
-);
-app.get(
-  "/auth/pinterest/callback",
-  passport.authorize("pinterest", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect("/api/pinterest");
   }
 );
 

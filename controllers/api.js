@@ -474,67 +474,6 @@ exports.postFileUpload = (req, res) => {
   res.redirect("/api/upload");
 };
 
-/**
- * GET /api/pinterest
- * Pinterest API example.
- */
-exports.getPinterest = (req, res, next) => {
-  const token = req.user.tokens.find(token => token.kind === "pinterest");
-  axios
-    .get(
-      `https://api.pinterest.com/v1/me/boards?access_token=${token.accessToken}`
-    )
-    .then(response => {
-      res.render("api/pinterest", {
-        title: "Pinterest API",
-        boards: response.data.data
-      });
-    })
-    .catch(error => {
-      next(error);
-    });
-};
-/**
- * POST /api/pinterest
- * Create a pin.
- */
-exports.postPinterest = (req, res, next) => {
-  const validationErrors = [];
-  if (validator.isEmpty(req.body.board))
-    validationErrors.push({ msg: "Board is required." });
-  if (validator.isEmpty(req.body.note))
-    validationErrors.push({ msg: "Note cannot be blank." });
-  if (validator.isEmpty(req.body.image_url))
-    validationErrors.push({ msg: "Image URL cannot be blank." });
-
-  if (validationErrors.length) {
-    req.flash("errors", validationErrors);
-    return res.redirect("/api/pinterest");
-  }
-
-  const token = req.user.tokens.find(token => token.kind === "pinterest");
-  const formData = {
-    board: req.body.board,
-    note: req.body.note,
-    link: req.body.link,
-    image_url: req.body.image_url
-  };
-
-  axios
-    .post(
-      `https://api.pinterest.com/v1/pins/?access_token=${token.accessToken}`,
-      formData
-    )
-    .then(() => {
-      req.flash("success", { msg: "Pin created" });
-      res.redirect("/api/pinterest");
-    })
-    .catch(error => {
-      req.flash("errors", { msg: error.response.data.message });
-      res.redirect("/api/pinterest");
-    });
-};
-
 exports.getHereMaps = (req, res) => {
   const imageMapURL = `https://image.maps.api.here.com/mia/1.6/mapview?\
 app_id=${process.env.HERE_APP_ID}&app_code=${process.env.HERE_APP_CODE}&\
