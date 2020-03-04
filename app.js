@@ -230,12 +230,6 @@ app.get("/api/scraping", apiController.getScraping);
 app.get("/api/clockwork", apiController.getClockwork);
 app.post("/api/clockwork", apiController.postClockwork);
 app.get(
-  "/api/facebook",
-  passportConfig.isAuthenticated,
-  passportConfig.isAuthorized,
-  apiController.getFacebook
-);
-app.get(
   "/api/github",
   passportConfig.isAuthenticated,
   passportConfig.isAuthorized,
@@ -279,17 +273,7 @@ app.get(
     res.redirect(req.session.returnTo || "/");
   }
 );
-app.get(
-  "/auth/facebook",
-  passport.authenticate("facebook", { scope: ["email", "public_profile"] })
-);
-app.get(
-  "/auth/facebook/callback",
-  passport.authenticate("facebook", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect(req.session.returnTo || "/");
-  }
-);
+
 app.get("/auth/github", passport.authenticate("github"));
 app.get(
   "/auth/github/callback",
