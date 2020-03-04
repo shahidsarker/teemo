@@ -241,7 +241,6 @@ app.post(
   apiController.postFileUpload
 );
 app.get("/api/here-maps", apiController.getHereMaps);
-app.get("/api/google-maps", apiController.getGoogleMaps);
 app.get(
   "/api/google/drive",
   passportConfig.isAuthenticated,

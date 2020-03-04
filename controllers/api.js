@@ -229,13 +229,6 @@ h=500&w=800&`;
   });
 };
 
-exports.getGoogleMaps = (req, res) => {
-  res.render("api/google-maps", {
-    title: "Google Maps API",
-    google_map_api_key: process.env.GOOGLE_MAP_API_KEY
-  });
-};
-
 exports.getGoogleDrive = (req, res) => {
   const token = req.user.tokens.find(token => token.kind === "google");
   const authObj = new google.auth.OAuth2({
