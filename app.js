@@ -225,12 +225,6 @@ app.get("/teams/:id", teamController.team);
 app.get("/api", apiController.getApi);
 app.get("/api/lastfm", apiController.getLastfm);
 app.get("/api/nyt", apiController.getNewYorkTimes);
-app.get(
-  "/api/steam",
-  passportConfig.isAuthenticated,
-  passportConfig.isAuthorized,
-  apiController.getSteam
-);
 app.get("/api/stripe", apiController.getStripe);
 app.post("/api/stripe", apiController.postStripe);
 app.get("/api/scraping", apiController.getScraping);
@@ -407,14 +401,6 @@ app.get(
   passport.authorize("tumblr", { failureRedirect: "/api" }),
   (req, res) => {
     res.redirect("/api/tumblr");
-  }
-);
-app.get("/auth/steam", passport.authorize("openid", { state: "SOME STATE" }));
-app.get(
-  "/auth/steam/callback",
-  passport.authorize("openid", { failureRedirect: "/api" }),
-  (req, res) => {
-    res.redirect(req.session.returnTo);
   }
 );
 app.get(

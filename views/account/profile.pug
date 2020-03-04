@@ -123,11 +123,6 @@ block content
       else
         p.mb-1: a(href='/auth/linkedin') Link your LinkedIn account
     .offset-sm-3.col-md-7.pl-2
-      if user.steam
-        p.mb-1: a.text-danger(href='/account/unlink/steam') Unlink your Steam account
-      else
-        p.mb-1: a(href='/auth/steam') Link your Steam account
-    .offset-sm-3.col-md-7.pl-2
       if user.quickbooks
         p.mb-1: a.text-danger(href='/account/unlink/quickbooks') Unlink your QuickBooks account
       else
