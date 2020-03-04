@@ -230,12 +230,6 @@ app.get("/api/scraping", apiController.getScraping);
 app.get("/api/clockwork", apiController.getClockwork);
 app.post("/api/clockwork", apiController.postClockwork);
 app.get(
-  "/api/tumblr",
-  passportConfig.isAuthenticated,
-  passportConfig.isAuthorized,
-  apiController.getTumblr
-);
-app.get(
   "/api/facebook",
   passportConfig.isAuthenticated,
   passportConfig.isAuthorized,
@@ -333,18 +327,6 @@ app.get(
   passport.authenticate("linkedin", { failureRedirect: "/login" }),
   (req, res) => {
     res.redirect(req.session.returnTo || "/");
-  }
-);
-
-/**
- * OAuth authorization routes. (API examples)
- */
-app.get("/auth/tumblr", passport.authorize("tumblr"));
-app.get(
-  "/auth/tumblr/callback",
-  passport.authorize("tumblr", { failureRedirect: "/api" }),
-  (req, res) => {
-    res.redirect("/api/tumblr");
   }
 );
 

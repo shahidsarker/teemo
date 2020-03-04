@@ -2,7 +2,6 @@ const { promisify } = require("util");
 const cheerio = require("cheerio");
 const graph = require("fbgraph");
 const { LastFmNode } = require("lastfm");
-const tumblr = require("tumblr.js");
 const { Octokit } = require("@octokit/rest");
 const Twit = require("twit");
 const stripe = require("stripe")(process.env.STRIPE_SKEY);
@@ -20,30 +19,6 @@ const validator = require("validator");
 exports.getApi = (req, res) => {
   res.render("api/index", {
     title: "API Examples"
-  });
-};
-
-/**
- * GET /api/tumblr
- * Tumblr API example.
- */
-exports.getTumblr = (req, res, next) => {
-  const token = req.user.tokens.find(token => token.kind === "tumblr");
-  const client = tumblr.createClient({
-    consumer_key: process.env.TUMBLR_KEY,
-    consumer_secret: process.env.TUMBLR_SECRET,
-    token: token.accessToken,
-    token_secret: token.tokenSecret
-  });
-  client.blogPosts("mmosdotcom.tumblr.com", { type: "photo" }, (err, data) => {
-    if (err) {
-      return next(err);
-    }
-    res.render("api/tumblr", {
-      title: "Tumblr API",
-      blog: data.blog,
-      photoset: data.posts[0].photos
-    });
   });
 };
 
