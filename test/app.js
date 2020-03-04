@@ -49,14 +49,6 @@ describe("GET /api/twilio", () => {
   });
 });
 
-describe("GET /api/stripe", () => {
-  it("should return 200 OK", done => {
-    request(app)
-      .get("/api/stripe")
-      .expect(200, done);
-  });
-});
-
 describe("GET /api/scraping", () => {
   it("should return 200 OK", done => {
     request(app)

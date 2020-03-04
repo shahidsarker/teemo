@@ -63,7 +63,6 @@
     "paypal-rest-sdk": "^1.8.1",
     "popper.js": "^1.16.1",
     "pug": "^2.0.4",
-    "stripe": "^8.22.0",
     "twit": "^2.2.11",
     "validator": "^12.2.0"
   },

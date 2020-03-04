@@ -3,7 +3,6 @@ const cheerio = require("cheerio");
 const graph = require("fbgraph");
 const { Octokit } = require("@octokit/rest");
 const Twit = require("twit");
-const stripe = require("stripe")(process.env.STRIPE_SKEY);
 const clockwork = require("clockwork")({ key: process.env.CLOCKWORK_KEY });
 const paypal = require("paypal-rest-sdk");
 const lob = require("lob")(process.env.LOB_KEY);
@@ -62,41 +61,6 @@ exports.getGithub = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
-
-/**
- * GET /api/stripe
- * Stripe API example.
- */
-exports.getStripe = (req, res) => {
-  res.render("api/stripe", {
-    title: "Stripe API",
-    publishableKey: process.env.STRIPE_PKEY
-  });
-};
-
-/**
- * POST /api/stripe
- * Make a payment.
- */
-exports.postStripe = (req, res) => {
-  const { stripeToken, stripeEmail } = req.body;
-  stripe.charges.create(
-    {
-      amount: 395,
-      currency: "usd",
-      source: stripeToken,
-      description: stripeEmail
-    },
-    err => {
-      if (err && err.type === "StripeCardError") {
-        req.flash("errors", { msg: "Your card has been declined." });
-        return res.redirect("/api/stripe");
-      }
-      req.flash("success", { msg: "Your card has been successfully charged." });
-      res.redirect("/api/stripe");
-    }
-  );
 };
 
 /**
