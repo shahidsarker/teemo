@@ -248,18 +248,6 @@ app.get(
   apiController.getGithub
 );
 app.get(
-  "/api/twitter",
-  passportConfig.isAuthenticated,
-  passportConfig.isAuthorized,
-  apiController.getTwitter
-);
-app.post(
-  "/api/twitter",
-  passportConfig.isAuthenticated,
-  passportConfig.isAuthorized,
-  apiController.postTwitter
-);
-app.get(
   "/api/instagram",
   passportConfig.isAuthenticated,
   passportConfig.isAuthorized,
@@ -367,14 +355,6 @@ app.get(
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect(req.session.returnTo || "/");
-  }
-);
-app.get("/auth/twitter", passport.authenticate("twitter"));
-app.get(
-  "/auth/twitter/callback",
-  passport.authenticate("twitter", { failureRedirect: "/login" }),
   (req, res) => {
     res.redirect(req.session.returnTo || "/");
   }

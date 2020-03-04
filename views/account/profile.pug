@@ -108,11 +108,6 @@ block content
       else
         p.mb-1: a(href='/auth/snapchat') Link your Snapchat account
     .offset-sm-3.col-md-7.pl-2
-      if user.twitter
-        p.mb-1: a.text-danger(href='/account/unlink/twitter') Unlink your Twitter account
-      else
-        p.mb-1: a(href='/auth/twitter') Link your Twitter account
-    .offset-sm-3.col-md-7.pl-2
       if user.github
         p.mb-1: a.text-danger(href='/account/unlink/github') Unlink your GitHub account
       else
