@@ -237,12 +237,6 @@ app.get("/api/scraping", apiController.getScraping);
 app.get("/api/clockwork", apiController.getClockwork);
 app.post("/api/clockwork", apiController.postClockwork);
 app.get(
-  "/api/foursquare",
-  passportConfig.isAuthenticated,
-  passportConfig.isAuthorized,
-  apiController.getFoursquare
-);
-app.get(
   "/api/tumblr",
   passportConfig.isAuthenticated,
   passportConfig.isAuthorized,
@@ -407,14 +401,6 @@ app.get(
 /**
  * OAuth authorization routes. (API examples)
  */
-app.get("/auth/foursquare", passport.authorize("foursquare"));
-app.get(
-  "/auth/foursquare/callback",
-  passport.authorize("foursquare", { failureRedirect: "/api" }),
-  (req, res) => {
-    res.redirect("/api/foursquare");
-  }
-);
 app.get("/auth/tumblr", passport.authorize("tumblr"));
 app.get(
   "/auth/tumblr/callback",
