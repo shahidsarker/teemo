@@ -140,33 +140,6 @@ exports.getQuickbooks = (req, res) => {
 };
 
 /**
- * GET /api/nyt
- * New York Times API example.
- */
-exports.getNewYorkTimes = (req, res, next) => {
-  const apiKey = process.env.NYT_KEY;
-  axios
-    .get(
-      `http://api.nytimes.com/svc/books/v2/lists?list-name=young-adult&api-key=${apiKey}`
-    )
-    .then(response => {
-      const books = response.data.results;
-      res.render("api/nyt", {
-        title: "New York Times API",
-        books
-      });
-    })
-    .catch(err => {
-      const message = JSON.stringify(err.response.data.fault);
-      next(
-        new Error(
-          `New York Times API - ${err.response.status} ${err.response.statusText} ${message}`
-        )
-      );
-    });
-};
-
-/**
  * GET /api/lastfm
  * Last.fm API example.
  */
