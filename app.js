@@ -264,15 +264,6 @@ app.get(
 /**
  * OAuth authentication routes. (Sign in)
  */
-app.get("/auth/snapchat", passport.authenticate("snapchat"));
-app.get(
-  "/auth/snapchat/callback",
-  passport.authenticate("snapchat", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect(req.session.returnTo || "/");
-  }
-);
-
 app.get("/auth/github", passport.authenticate("github"));
 app.get(
   "/auth/github/callback",
