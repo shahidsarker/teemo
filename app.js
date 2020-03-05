@@ -223,7 +223,6 @@ app.get("/teams/:id", teamController.team);
  * API examples routes.
  */
 app.get("/api", apiController.getApi);
-app.get("/api/scraping", apiController.getScraping);
 app.get("/api/clockwork", apiController.getClockwork);
 app.post("/api/clockwork", apiController.postClockwork);
 app.get(

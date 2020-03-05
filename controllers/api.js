@@ -1,5 +1,4 @@
 const { promisify } = require("util");
-const cheerio = require("cheerio");
 const graph = require("fbgraph");
 const { Octokit } = require("@octokit/rest");
 const Twit = require("twit");
@@ -17,29 +16,6 @@ exports.getApi = (req, res) => {
   res.render("api/index", {
     title: "API Examples"
   });
-};
-
-/**
- * GET /api/scraping
- * Web scraping example using Cheerio library.
- */
-exports.getScraping = (req, res, next) => {
-  axios
-    .get("https://news.ycombinator.com/")
-    .then(response => {
-      const $ = cheerio.load(response.data);
-      const links = [];
-      $('.title a[href^="http"], a[href^="https"]')
-        .slice(1)
-        .each((index, element) => {
-          links.push($(element));
-        });
-      res.render("api/scraping", {
-        title: "Web Scraping",
-        links
-      });
-    })
-    .catch(error => next(error));
 };
 
 /**

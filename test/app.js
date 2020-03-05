@@ -41,14 +41,6 @@ describe("GET /contact", () => {
   });
 });
 
-describe("GET /api/scraping", () => {
-  it("should return 200 OK", done => {
-    request(app)
-      .get("/api/scraping")
-      .expect(200, done);
-  });
-});
-
 describe("GET /api/lob", () => {
   it("should return 200 OK", done => {
     request(app)
