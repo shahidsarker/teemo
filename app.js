@@ -229,7 +229,6 @@ app.get(
   passportConfig.isAuthorized,
   apiController.getGithub
 );
-app.get("/api/lob", apiController.getLob);
 app.get("/api/upload", lusca({ csrf: true }), apiController.getFileUpload);
 app.post(
   "/api/upload",
