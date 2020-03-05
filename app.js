@@ -223,8 +223,6 @@ app.get("/teams/:id", teamController.team);
  * API examples routes.
  */
 app.get("/api", apiController.getApi);
-app.get("/api/clockwork", apiController.getClockwork);
-app.post("/api/clockwork", apiController.postClockwork);
 app.get(
   "/api/github",
   passportConfig.isAuthenticated,

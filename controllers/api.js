@@ -2,7 +2,6 @@ const { promisify } = require("util");
 const graph = require("fbgraph");
 const { Octokit } = require("@octokit/rest");
 const Twit = require("twit");
-const clockwork = require("clockwork")({ key: process.env.CLOCKWORK_KEY });
 const lob = require("lob")(process.env.LOB_KEY);
 const axios = require("axios");
 const { google } = require("googleapis");
@@ -36,37 +35,6 @@ exports.getGithub = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
-
-/**
- * GET /api/clockwork
- * Clockwork SMS API example.
- */
-exports.getClockwork = (req, res) => {
-  res.render("api/clockwork", {
-    title: "Clockwork SMS API"
-  });
-};
-
-/**
- * POST /api/clockwork
- * Send a text message using Clockwork SMS
- */
-exports.postClockwork = (req, res, next) => {
-  const message = {
-    To: req.body.telephone,
-    From: "Hackathon",
-    Content: "Hello from the Hackathon Starter"
-  };
-  clockwork.sendSms(message, (err, responseData) => {
-    if (err) {
-      return next(err.errDesc);
-    }
-    req.flash("success", {
-      msg: `Text sent to ${responseData.responses[0].to}`
-    });
-    res.redirect("/api/clockwork");
-  });
 };
 
 /**
