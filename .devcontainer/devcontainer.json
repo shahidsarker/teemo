@@ -1,0 +1,49 @@
+// This is the magic VS Code file. You only need to install Docker and run the daemon OR use a remote docker host
+// and install the Remote Development extension pack https://aka.ms/vscode-remote/download/extension in VS Code.
+// Now you can (cmd/ctrl)+shift+P > "Reopen in Container"
+
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.101.1/containers/javascript-node-12
+{
+	"name": "Node.js 13",
+	"dockerFile": "Dockerfile",
+	// "dockerComposeFile": "docker-compose.yml",
+	// "image": "node:13",
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"dbaeumer.vscode-eslint"
+	],
+
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "node",
+	
+	"workspaceMount": "source=${localWorkspaceFolder},target=/home/node/workspace,type=bind,consistency=cached",
+	"workspaceFolder": "/home/node/workspace",
+
+	"mounts": [
+		// mount a docker managed volume named "home" as the home directory.
+		// This volume will exist beyond the life of the container.
+		// If you have dotfiles, this should allow you to bring them in
+		"source=home,target=/home/node,type=volume",
+		
+		// bind you host machine's ~/.ssh/ to the container's ~/.ssh. Work on WIndows, Mac, and Linux.
+		// Either make sure your profile starts the ssh agent
+		// or you can manually run .devcontainer/start_ssh_agent.sh
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached",
+
+		// Also mount a volume unique for this project to the workspace for node_modules
+		"source=teemo-node_modules,target=/home/node/workspace/node_modules,type=volume"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [8080],
+
+	// Use 'postCreateCommand' to run commands after the container is created. (THIS DOESN'T WORK!!!)
+	// "postCreateCommand": "chown node node_modules"
+}
