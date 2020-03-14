@@ -6,8 +6,9 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.101.1/containers/javascript-node-12
 {
 	"name": "Node.js 13",
-	"dockerFile": "Dockerfile",
-	// "dockerComposeFile": "docker-compose.yml",
+	// "dockerFile": "Dockerfile",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "web",
 	// "image": "node:13",
 
 	// Set *default* container specific settings.json values on container create.
@@ -23,26 +24,26 @@
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "node",
 	
-	"workspaceMount": "source=${localWorkspaceFolder},target=/home/node/workspace,type=bind,consistency=cached",
+	// "workspaceMount": "source=${localWorkspaceFolder},target=/home/node/workspace,type=bind,consistency=cached",
 	"workspaceFolder": "/home/node/workspace",
 
-	"mounts": [
+	// "mounts": [
 		// mount a docker managed volume named "home" as the home directory.
 		// This volume will exist beyond the life of the container.
 		// If you have dotfiles, this should allow you to bring them in
-		"source=home,target=/home/node,type=volume",
+		// "source=home,target=/home/node,type=volume",
 		
 		// bind you host machine's ~/.ssh/ to the container's ~/.ssh. Work on WIndows, Mac, and Linux.
 		// Either make sure your profile starts the ssh agent
 		// or you can manually run .devcontainer/start_ssh_agent.sh
-		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached",
+		// "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached",
 
 		// Also mount a volume unique for this project to the workspace for node_modules
-		"source=teemo-node_modules,target=/home/node/workspace/node_modules,type=volume"
-	],
+		// "source=teemo-node_modules,target=/home/node/workspace/node_modules,type=volume"
+	// ],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [8080],
+	// "forwardPorts": [8080],
 
 	// Use 'postCreateCommand' to run commands after the container is created. (THIS DOESN'T WORK!!!)
 	// "postCreateCommand": "chown node node_modules"
